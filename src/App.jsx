@@ -16,6 +16,13 @@ export function App() {
     const [todos, setTodos] = useState([{ id: 1, task: 'Tarea 1', completed: false }])
     const todoTaskRef = useRef();
 
+    useEffect(() => {
+        const storedTodos = JSON.parse(localStorage.getItem(KEY));
+        if (storedTodos){
+            setTodos(storedTodos);
+        }
+    }, []);
+
     const toggleTodo = (id) => {
         const newTodos = [...todos];
         const todo = newTodos.find((todo) => todo.id === id);
